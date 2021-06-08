@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
+import ListaDeNotas from './components/List';
+import RegisterForm from './components/RegisterForm';
 
-function App() {
-  return <h1>Boa</h1>;
+class App extends Component {
+  render() {
+    return (
+      <>
+        <RegisterForm />
+        <ListaDeNotas />
+      </>
+    );
+  }
 }
 
 export default App;
