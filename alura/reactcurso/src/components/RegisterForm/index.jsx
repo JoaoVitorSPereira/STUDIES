@@ -2,12 +2,25 @@ import React, { Component } from 'react';
 import { FormControl, Input, Textarea, Button, Flex } from '@chakra-ui/react';
 
 class RegisterForm extends Component {
-  constructor() {
-    super();
-    this.titulo = '';
+  constructor(props) {
+    super(props);
+    this.title = '';
+    this.text = '';
   }
-  handleTitleChange(event) {
-    this.titulo = event.target.value;
+  _handleTitleChange(event) {
+    event.stopPropagation();
+    this.title = event.target.value;
+  }
+
+  _handleTextChange(event) {
+    event.stopPropagation();
+    this.text = event.target.value;
+  }
+
+  _createCard(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.props.createCard(this.title, this.text);
   }
 
   render() {
@@ -19,6 +32,7 @@ class RegisterForm extends Component {
           borderRightColor='slateblue'
           minHeight='100vh'
           padding='20px'
+          onSubmit={this._createCard.bind(this)}
         >
           <Flex flexDirection='column' mt='20px' alignItems='flex-end'>
             <Input
@@ -26,7 +40,7 @@ class RegisterForm extends Component {
               placeholder='Titulo'
               mb='20px'
               bg='snow'
-              onChange={this.handleTitleChange}
+              onChange={this._handleTitleChange.bind(this)}
             />
             <Textarea
               placeholder='Escreva sua nota...'
@@ -34,6 +48,7 @@ class RegisterForm extends Component {
               size='lg'
               height='300px'
               bg='snow'
+              onChange={this._handleTextChange.bind(this)}
             />
             <Button bg='slateblue' color='white'>
               Criar Nota
