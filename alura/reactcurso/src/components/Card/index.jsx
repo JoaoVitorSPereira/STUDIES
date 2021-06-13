@@ -1,18 +1,36 @@
 import React, { Component } from 'react';
-import './styles.css';
+import { Flex, Text } from '@chakra-ui/react';
 
 class Card extends Component {
   render() {
     return (
-      <section className='card-style'>
+      <Flex
+        flexDirection='column'
+        alignItems='flex-start'
+        justifyContent='space-between'
+        borderRadius='4px'
+        flexWrap='wrap'
+        boxShadow='0 0 4px rgba(0,0,0, 0.3)'
+        padding='16px'
+        bg='snow'
+      >
         {/* Tag JS representada por {} dentro do JSX */}
         {}
 
-        <header className='card-style_header'>
-          <h3 className='card-style_title'>Titulo</h3>
-        </header>
-        <p className='card-style_text'>Escreva sua nota</p>
-      </section>
+        <Flex
+          fontSize='1.1em'
+          display='flex'
+          justifyContent='space-between'
+          alignItems='center'
+        >
+          <Text mt='8px' fontSize='1em'>
+            Titulo
+          </Text>
+        </Flex>
+        <Text fontSize='1.2em' mr='12px'>
+          Escreva sua nota
+        </Text>
+      </Flex>
     );
   }
 }
