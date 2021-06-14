@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { SimpleGrid, Text, Flex } from '@chakra-ui/react';
+import { SimpleGrid, Flex } from '@chakra-ui/react';
 import Card from '../Card';
 
-class ListaDeNotas extends Component {
+class CardList extends Component {
   render() {
     return (
       <SimpleGrid
@@ -13,19 +13,16 @@ class ListaDeNotas extends Component {
         pl='20px'
         pr='20px'
       >
-        {Array.of('Trabalho', 'Trabalho', 'Estudos', 'Emprego', 'Salario').map(
-          (categoria, index) => {
-            return (
-              <Flex margin='12px' key={index} flexDirection='column'>
-                <Text>{categoria}</Text>
-                <Card />
-              </Flex>
-            );
-          }
-        )}
+        {this.props.cards.map((card, index) => {
+          return (
+            <Flex margin='12px' key={index} flexDirection='column'>
+              <Card title={card.title} text={card.text} />
+            </Flex>
+          );
+        })}
       </SimpleGrid>
     );
   }
 }
 
-export default ListaDeNotas;
+export default CardList;

@@ -24,11 +24,11 @@ class Card extends Component {
           alignItems='center'
         >
           <Text mt='8px' fontSize='1em'>
-            Titulo
+            {this.props.title}
           </Text>
         </Flex>
         <Text fontSize='1.2em' mr='12px'>
-          Escreva sua nota
+          {this.props.text}
         </Text>
       </Flex>
     );
