@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import { ReactComponent as DeleteCardIcon } from '../../assets/img/delete.svg';
 import { Flex, Text } from '@chakra-ui/react';
 
 class Card extends Component {
+  delete() {
+    const indice = this.props.indice;
+    this.props.deleteCard(indice);
+  }
   render() {
     return (
       <Flex
@@ -22,10 +27,12 @@ class Card extends Component {
           display='flex'
           justifyContent='space-between'
           alignItems='center'
+          width='100%'
         >
           <Text mt='8px' fontSize='1em'>
             {this.props.title}
           </Text>
+          <DeleteCardIcon onClick={this.delete.bind(this)} />
         </Flex>
         <Text fontSize='1.2em' mr='12px'>
           {this.props.text}

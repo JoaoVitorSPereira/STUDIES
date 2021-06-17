@@ -16,7 +16,12 @@ class CardList extends Component {
         {this.props.cards.map((card, index) => {
           return (
             <Flex margin='12px' key={index} flexDirection='column'>
-              <Card title={card.title} text={card.text} />
+              <Card
+                indice={index}
+                deleteCard={this.props.deleteCard}
+                title={card.title}
+                text={card.text}
+              />
             </Flex>
           );
         })}
