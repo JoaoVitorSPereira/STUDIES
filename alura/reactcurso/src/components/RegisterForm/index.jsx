@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { FormControl, Input, Textarea, Button, Flex } from '@chakra-ui/react';
+import {
+  FormControl,
+  Input,
+  Textarea,
+  Button,
+  Flex,
+  Select,
+} from '@chakra-ui/react';
 
 class RegisterForm extends Component {
   constructor(props) {
@@ -35,6 +42,11 @@ class RegisterForm extends Component {
             padding='20px'
           >
             <Flex flexDirection='column' mt='20px' alignItems='flex-end'>
+              <select>
+                {this.props.categories.map((category) => {
+                  return <option>{category}</option>;
+                })}
+              </select>
               <Input
                 type='text'
                 placeholder='Titulo'

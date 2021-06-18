@@ -19,7 +19,7 @@ class CategoryList extends Component {
         </Flex>
         <Input
           placeholder='Adicionar Categoria'
-          onKeyUp={this._handleEventInput}
+          onKeyUp={this._handleEventInput.bind(this)}
         />
       </Flex>
     );

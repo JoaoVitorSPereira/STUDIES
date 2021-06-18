@@ -38,7 +38,10 @@ class App extends Component {
     return (
       <ChakraProvider>
         <Flex>
-          <RegisterForm createCard={this.createCard.bind(this)} />
+          <RegisterForm
+            categories={this.state.categories}
+            createCard={this.createCard.bind(this)}
+          />
           <Flex>
             <CategoryList
               addCategory={this.addCategory.bind(this)}
