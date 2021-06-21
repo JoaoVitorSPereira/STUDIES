@@ -33,6 +33,7 @@ class Card extends Component {
             {this.props.title}
           </Text>
           <DeleteCardIcon onClick={this.delete.bind(this)} />
+          <Text>{this.props.category}</Text>
         </Flex>
         <Text fontSize='1.2em' mr='12px'>
           {this.props.text}

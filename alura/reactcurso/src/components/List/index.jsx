@@ -21,6 +21,7 @@ class CardList extends Component {
                 deleteCard={this.props.deleteCard}
                 title={card.title}
                 text={card.text}
+                category={card.category}
               />
             </Flex>
           );

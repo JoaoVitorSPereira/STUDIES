@@ -13,6 +13,7 @@ class RegisterForm extends Component {
     super(props);
     this.title = '';
     this.text = '';
+    this.category = 'Sem categoria.';
   }
   _handleTitleChange(event) {
     event.stopPropagation();
@@ -24,10 +25,15 @@ class RegisterForm extends Component {
     this.text = event.target.value;
   }
 
+  _handleCategoryChange(event) {
+    event.stopPropagation();
+    this.category = event.target.value;
+  }
+
   _createCard(event) {
     event.preventDefault();
     event.stopPropagation();
-    this.props.createCard(this.title, this.text);
+    this.props.createCard(this.title, this.text, this.category);
   }
 
   render() {
@@ -42,7 +48,8 @@ class RegisterForm extends Component {
             padding='20px'
           >
             <Flex flexDirection='column' mt='20px' alignItems='flex-end'>
-              <select>
+              <select onChange={this._handleCategoryChange.bind(this)}>
+                <option>Sem categoria</option>
                 {this.props.categories.map((category) => {
                   return <option>{category}</option>;
                 })}

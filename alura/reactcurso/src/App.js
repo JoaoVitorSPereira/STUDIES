@@ -13,8 +13,8 @@ class App extends Component {
     };
   }
 
-  createCard(title, text) {
-    const newCard = { title, text };
+  createCard(title, text, category) {
+    const newCard = { title, text, category };
     const newCardArray = [...this.state.cards, newCard];
     const newState = {
       cards: newCardArray,
