@@ -3,35 +3,14 @@ import { ChakraProvider, Flex } from '@chakra-ui/react';
 import CardList from './components/List';
 import CategoryList from './components/CategoryList';
 import RegisterForm from './components/RegisterForm';
+import Categories from './data/Category';
+import CardArray from './data/Cards';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      cards: [],
-      categories: [],
-    };
-  }
-
-  createCard(title, text, category) {
-    const newCard = { title, text, category };
-    const newCardArray = [...this.state.cards, newCard];
-    const newState = {
-      cards: newCardArray,
-    };
-    this.setState(newState);
-  }
-
-  addCategory(categoryName) {
-    const newCategoriesArray = [...this.state.categories, categoryName];
-    const newEstate = { ...this.state, categories: newCategoriesArray };
-    this.setState(newEstate);
-  }
-
-  deleteCard(index) {
-    let arrayCards = this.state.cards;
-    arrayCards.splice(index, 1);
-    this.setState({ cards: arrayCards });
+    this.categories = new Categories();
+    this.cards = new CardArray();
   }
 
   render() {
@@ -39,17 +18,17 @@ class App extends Component {
       <ChakraProvider>
         <Flex>
           <RegisterForm
-            categories={this.state.categories}
-            createCard={this.createCard.bind(this)}
+            categories={this.categories}
+            createCard={this.cards.addCard}
           />
           <Flex>
             <CategoryList
-              addCategory={this.addCategory.bind(this)}
-              categories={this.state.categories}
+              addCategory={this.categories.addCategory.bind(this.categories)}
+              categories={this.categories}
             />
             <CardList
-              cards={this.state.cards}
-              deleteCard={this.deleteCard.bind(this)}
+              cards={this.cards.cards}
+              deleteCard={this.cards.deleteCard}
             />
           </Flex>
         </Flex>

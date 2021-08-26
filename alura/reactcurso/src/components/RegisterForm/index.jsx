@@ -14,7 +14,17 @@ class RegisterForm extends Component {
     this.title = '';
     this.text = '';
     this.category = 'Sem categoria.';
+    this.state = { categories: [] };
   }
+
+  componentDidMount() {
+    this.props.categories.subscribe(this._newCategory.bind(this));
+  }
+
+  _newCategory(categories) {
+    this.setState({ ...this.state, categories });
+  }
+
   _handleTitleChange(event) {
     event.stopPropagation();
     this.title = event.target.value;
@@ -48,12 +58,12 @@ class RegisterForm extends Component {
             padding='20px'
           >
             <Flex flexDirection='column' mt='20px' alignItems='flex-end'>
-              <select onChange={this._handleCategoryChange.bind(this)}>
+              <Select onChange={this._handleCategoryChange.bind(this)}>
                 <option>Sem categoria</option>
-                {this.props.categories.map((category) => {
-                  return <option>{category}</option>;
+                {this.state.categories.map((category, index) => {
+                  return <option key={index}>{category}</option>;
                 })}
-              </select>
+              </Select>
               <Input
                 type='text'
                 placeholder='Titulo'
@@ -69,9 +79,9 @@ class RegisterForm extends Component {
                 bg='snow'
                 onChange={this._handleTextChange.bind(this)}
               />
-              <button bg='slateblue' color='white'>
+              <Button bg='slateblue' color='white'>
                 Criar Nota
-              </button>
+              </Button>
             </Flex>
           </FormControl>
         </form>
