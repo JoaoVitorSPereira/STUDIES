@@ -4,8 +4,8 @@ import { Flex, Text } from '@chakra-ui/react';
 
 class Card extends Component {
   delete() {
-    const indice = this.props.indice;
-    this.props.deleteCard(indice);
+    const index = this.props.index;
+    this.props.deleteCard(index);
   }
   render() {
     return (

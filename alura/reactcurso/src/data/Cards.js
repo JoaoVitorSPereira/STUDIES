@@ -7,18 +7,24 @@ export default class CardArray {
   addCard(title, text, category) {
     const newCard = new Card(title, text, category);
     this.cards.push(newCard);
+    this.notify();
+  }
+
+  deleteCard(index) {
+    this.cards.splice(index, 1);
+    this.notify();
   }
 
   subscribe(func) {
     this._subscribed.push(func);
   }
 
-  notifie() {
-    this._subscribed.forEach((func) => func(this.categories));
+  unsubscribe(func) {
+    this._subscribed = this._subscribed.filter((f) => f !== func);
   }
 
-  deleteCard(index) {
-    this.cards.splice(index, 1);
+  notify() {
+    this._subscribed.forEach((func) => func(this.cards));
   }
 }
 

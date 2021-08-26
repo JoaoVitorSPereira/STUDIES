@@ -5,10 +5,15 @@ class CategoryList extends Component {
   constructor() {
     super();
     this.state = { categories: [] };
+    this._newCategory = this._newCategory.bind(this);
   }
 
   componentDidMount() {
-    this.props.categories.subscribe(this._newCategory.bind(this));
+    this.props.categories.subscribe(this._newCategory);
+  }
+
+  componentWillUnmount() {
+    this.props.categories.unsubscribe(this._newCategory);
   }
 
   _newCategory(categories) {

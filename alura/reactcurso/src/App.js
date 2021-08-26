@@ -7,8 +7,8 @@ import Categories from './data/Category';
 import CardArray from './data/Cards';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.categories = new Categories();
     this.cards = new CardArray();
   }
@@ -19,7 +19,7 @@ class App extends Component {
         <Flex>
           <RegisterForm
             categories={this.categories}
-            createCard={this.cards.addCard}
+            createCard={this.cards.addCard.bind(this.cards)}
           />
           <Flex>
             <CategoryList
@@ -27,8 +27,8 @@ class App extends Component {
               categories={this.categories}
             />
             <CardList
-              cards={this.cards.cards}
-              deleteCard={this.cards.deleteCard}
+              cards={this.cards}
+              deleteCard={this.cards.deleteCard.bind(this.cards)}
             />
           </Flex>
         </Flex>

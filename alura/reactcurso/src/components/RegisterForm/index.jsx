@@ -15,10 +15,15 @@ class RegisterForm extends Component {
     this.text = '';
     this.category = 'Sem categoria.';
     this.state = { categories: [] };
+    this._newCategory = this._newCategory.bind(this);
   }
 
   componentDidMount() {
-    this.props.categories.subscribe(this._newCategory.bind(this));
+    this.props.categories.subscribe(this._newCategory);
+  }
+
+  componentWillUnmount() {
+    this.props.categories.unsubscribe(this._newCategory);
   }
 
   _newCategory(categories) {
@@ -79,9 +84,13 @@ class RegisterForm extends Component {
                 bg='snow'
                 onChange={this._handleTextChange.bind(this)}
               />
-              <Button bg='slateblue' color='white'>
+              <button
+                // onClick={this._createCard.bind(this)}
+                bg='slateblue'
+                color='white'
+              >
                 Criar Nota
-              </Button>
+              </button>
             </Flex>
           </FormControl>
         </form>

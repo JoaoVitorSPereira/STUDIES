@@ -3,6 +3,22 @@ import { SimpleGrid, Flex } from '@chakra-ui/react';
 import Card from '../Card';
 
 class CardList extends Component {
+  constructor() {
+    super();
+    this.state = { cards: [] };
+    this._newCards = this._newCards.bind(this);
+  }
+  componentDidMount() {
+    this.props.cards.subscribe(this._newCards);
+  }
+
+  componentWillUnmount() {
+    this.props.cards.unsubscribe(this._newCards);
+  }
+
+  _newCards(cards) {
+    this.setState({ ...this.state, cards });
+  }
   render() {
     return (
       <SimpleGrid
@@ -13,11 +29,11 @@ class CardList extends Component {
         pl='20px'
         pr='20px'
       >
-        {this.props.cards.map((card, index) => {
+        {this.state.cards.map((card, index) => {
           return (
             <Flex margin='12px' key={index} flexDirection='column'>
               <Card
-                indice={index}
+                index={index}
                 deleteCard={this.props.deleteCard}
                 title={card.title}
                 text={card.text}
